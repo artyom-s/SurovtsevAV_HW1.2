@@ -21,43 +21,41 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         mainTrafficLight.layer.cornerRadius = 25
-        redLight.alpha = 0.3
-        redLight.layer.cornerRadius = 50
-        yellowLight.alpha = 0.3
-        yellowLight.layer.cornerRadius = 50
-        greenLight.alpha = 0.3
-        greenLight.layer.cornerRadius = 50
-        
         startButton.layer.cornerRadius = 25
+        
+        redLight.alpha = CGFloat(lightAlpha)
+        yellowLight.alpha = CGFloat(lightAlpha)
+        greenLight.alpha = CGFloat(lightAlpha)
+        
+        redLight.layer.cornerRadius = redLight.frame.width / 2
+        yellowLight.layer.cornerRadius = yellowLight.frame.width / 2
+        greenLight.layer.cornerRadius = greenLight.frame.width / 2
 
     }
     
-     var trafficLochtCycle = 0
+    var trafficLightCycle = 0
+    let lightAlpha: Float = 0.3
+    let fullAlpha: Float = 1
 
     @IBAction func startButtonPresset() {
         
-        
-        switch trafficLochtCycle {
+        switch trafficLightCycle {
         case 0:
             startButton.setTitle("NEXT", for: .normal)
-            redLight.alpha = 1
-            trafficLochtCycle = 1
-            break
+            redLight.alpha = CGFloat(fullAlpha)
+            trafficLightCycle += 1
         case 1:
-            redLight.alpha = 0.3
-            yellowLight.alpha = 1
-            trafficLochtCycle = 2
-            break
+            redLight.alpha = CGFloat(lightAlpha)
+            yellowLight.alpha = CGFloat(fullAlpha)
+            trafficLightCycle += 1
         case 2:
-            yellowLight.alpha = 0.3
-            greenLight.alpha = 1
-            trafficLochtCycle = 3
-            break
+            yellowLight.alpha = CGFloat(lightAlpha)
+            greenLight.alpha = CGFloat(fullAlpha)
+            trafficLightCycle += 1
         case 3:
-            greenLight.alpha = 0.3
-            redLight.alpha = 1
-            trafficLochtCycle = 1
-            break
+            greenLight.alpha = CGFloat(lightAlpha)
+            redLight.alpha = CGFloat(fullAlpha)
+            trafficLightCycle = 1
         default:
             break
         }
